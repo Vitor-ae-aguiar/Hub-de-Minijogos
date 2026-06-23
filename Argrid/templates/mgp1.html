@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinhe o Numero</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <h1 class="ttlhome">Adivinhe o Numero!</h1>
+        <p class="sttlhome">Estou pensando em um numero entre 0 e 100</p>
+
+        <div id="feedback"></div>
+
+<br>
+
+        <div>
+            <input type="number" id="guess-input" placeholder="Digite seu palpite" min="0" max="100" class="Ver">
+        </div>
+
+        <div>
+            <button onclick="checkGuess()" class="Ver">Verificar</button>
+        </div>
+        
+        <div>
+            <button onclick="newGame()" class="Ver">Gerar numero</button>
+        </div>
+    </div>
+
+<br>
+ <br>
+  <br>
+   <br>
+    <br>
+     <br>
+      <br>
+       <br>
+        <br>
+       <br>
+      <br>
+     <br>
+    <br>
+   <br>
+  <br>
+ <br>
+<br>
+
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="/" class="unlink">Voltar para Home</a>
+    </div>
+
+    <header>
+        <h1 class="htxt">
+            Me contate: Vitoraedeaguiar.dev@gmail.com | Meulinkedin.com <br>
+            Outros projetos: https://github.com/Vitor-ae-aguiar
+        </h1>
+    </header>
+
+    <script>
+        let secretNumber = 0;
+        let attempts = 0;
+
+        function newGame() {
+            secretNumber = Math.floor(Math.random() * 101);
+            attempts = 0;
+            document.getElementById('guess-input').value = '';
+            document.getElementById('feedback').innerHTML = '<p class="ttlhome">Novo jogo! Adivinhe o numero!</p>';
+        }
+
+        function checkGuess() {
+            const guess = parseInt(document.getElementById('guess-input').value);
+            const feedback = document.getElementById('feedback');
+            
+            if (isNaN(guess)) {
+                feedback.innerHTML = '<p class="ttlhome">Digite um numero valido!</p>';
+                return;
+            }
+            
+            attempts++;
+            
+            if (guess < secretNumber) {
+                feedback.innerHTML = `<p class="ttlhome">O numero e maior! (Tentativa ${attempts})</p>`;
+            } else if (guess > secretNumber) {
+                feedback.innerHTML = `<p class="ttlhome">O numero e menor! (Tentativa ${attempts})</p>`;
+            } else {
+                feedback.innerHTML = `<p class="ttlhome">Correto! Era o numero ${secretNumber} e foi acertado em ${attempts} tentativa(s)!</p>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', newGame);
+    </script>
+</body>
+</html>
